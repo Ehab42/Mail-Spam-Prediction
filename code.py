@@ -20,12 +20,14 @@ def answer_one():
     return spam_percentage
 
 
-print(answer_one())
+# print(answer_one())
 
 
 def answer_two():
 
-    return  # Your answer here
+    vect = CountVectorizer().fit(X_train)
+    longest_token = max(vect, key=len)
+    return longest_token
 
 
 print(answer_two())
