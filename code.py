@@ -26,7 +26,7 @@ def answer_one():
 def answer_two():
 
     vect = CountVectorizer().fit(X_train)
-    longest_token = max(vect, key=len)
+    longest_token = max(vect.get_feature_names(), key=len)
     return longest_token
 
 
