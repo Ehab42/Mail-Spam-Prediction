@@ -15,7 +15,7 @@ X_train, X_test, y_train, y_test = train_test_split(spam_data['text'],
 def answer_one():
     
     num_of_spam_entries = len(spam_data[spam_data['target'] == 1])
-    num_of_nospam_entries = len(spam_data) - num_of_spam_entries
+    num_of_nospam_entries = len(spam_data[spam_data['target'] == 0])
     spam_percentage = 100 * (num_of_spam_entries/num_of_nospam_entries) 
     return spam_percentage
 
