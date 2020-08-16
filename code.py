@@ -1,3 +1,4 @@
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
@@ -94,3 +95,11 @@ def answer_ten():
 
 
 # print(answer_ten())
+
+
+def answer_nine():
+
+    return  # Your answer here
+
+
+print(answer_nine())
