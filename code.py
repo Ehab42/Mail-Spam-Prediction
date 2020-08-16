@@ -2,6 +2,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
 import numpy as np
 
@@ -54,7 +55,17 @@ def answer_three():
 
 def answer_five():
 
-    return  # Your answer here
+    # Fit and transform the training data `X_train` using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than **3**.
+    tfidf = TfidfVectorizer(min_df=3).fit(X_train)
+    tfidf_vectorized = tfidf.transform(X_train)
+
+    # fit a multinomial Naive Bayes classifier model with smoothing `alpha=0.1`
+    model = MultinomialNB(alpha=0.1).fit(tfidf_vectorized, y_train)
+
+    # Find the area under the curve (AUC) score
+    predictions = model.predict(tfidf.transform(X_test))
+    auc = roc_auc_score(y_test, predictions)
+    return auc
 
 
-prinr(answer_five())
+print(answer_five())
