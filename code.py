@@ -72,7 +72,11 @@ def answer_five():
 
 def answer_six():
 
-    return  # Your answer here
+    avg_len_nospam = (spam_data[spam_data['target']
+                                == 0]['text'].str.len()).mean()
+    avg_len_spam = (spam_data[spam_data['target'] == 1]
+                    ['text'].str.len()).mean()
+    return avg_len_nospam, avg_len_spam
 
 
-print(answer_one())
+print(answer_six())
