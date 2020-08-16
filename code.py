@@ -1,3 +1,4 @@
+from sklearn.svm import SVC
 from sklearn.metrics import roc_auc_score
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
@@ -80,3 +81,11 @@ def answer_six():
 
 
 # print(answer_six())
+
+
+def answer_seven():
+
+    return  # Your answer here
+
+
+print(answer_seven())
