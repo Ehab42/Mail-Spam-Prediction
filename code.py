@@ -69,3 +69,10 @@ def answer_five():
 
 
 # print(answer_five())
+
+def answer_six():
+
+    return  # Your answer here
+
+
+print(answer_six())
