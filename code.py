@@ -85,7 +85,18 @@ def answer_six():
 
 def answer_seven():
 
-    return  # Your answer here
+    # Fit and transform the training data `X_train` using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than **3**.
+    tfidf = TfidfVectorizer(min_df=5).fit(X_train)
+    tfidf_vectorized = tfidf.transform(X_train)
+
+    # Fit a Support Vector Classification model with regularization `C=10000`.
+    model = SVC(C=10000).fit(tfidf_vectorized, y_train)
+
+    # Find the area under the curve (AUC) score
+    predictions = model.predict(tfidf.transform(X_test))
+    auc = roc_auc_score(y_test, predictions)
+
+    return auc
 
 
 print(answer_seven())
