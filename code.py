@@ -80,3 +80,10 @@ def answer_six():
 
 
 # print(answer_six())
+
+def answer_eight():
+
+    return spam_data[spam_data['target'] == 0]['text'].str.count(r'\d').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\d').mean()
+
+
+# print(answer_eight())
