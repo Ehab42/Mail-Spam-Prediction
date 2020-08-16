@@ -36,7 +36,20 @@ def answer_two():
 
 def answer_four():
 
-    return  # Your answer here
+    vect = TfidfVectorizer().fit(X_train)
+    # A list of all feature names
+    feature_names = np.array(vect.get_feature_names())
+    tfidf_values = vect.transform(X_train).max(
+        0).toarray()[0]  # Sorted Tfidf values
+    smallest_20tfidf_features = feature_names[tfidf_values.argsort()[
+        :20]]
+    largest_20tfidf_features = feature_names[tfidf_values.argsort()[
+        :-21:-1]]
+    smallest_tfidfs_series = pd.Series(
+        smallest_20tfidf_features, index=sorted(tfidf_values)[0:20])
+    largest_tfidfs_series = pd.Series(
+        largest_20tfidf_features, index=sorted(tfidf_values)[-21:-1])
+    return smallest_tfidfs_series, largest_tfidfs_series
 
 
 print(answer_four())
