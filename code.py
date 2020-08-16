@@ -90,7 +90,7 @@ def answer_eight():
 
 def answer_ten():
 
-    return  # Your answer here
+    return spam_data[spam_data['target'] == 0]['text'].str.count(r'\W').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\W').mean()
 
 
-answer_ten()
+# print(answer_ten())
