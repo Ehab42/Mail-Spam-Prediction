@@ -13,3 +13,24 @@ Fit the training data `X_train` using a Count Vectorizer with default parameters
 What is the longest token in the vocabulary?
 
 *This function should return a string.*
+
+### Question 3
+
+Fit and transform the training data `X_train` using a Count Vectorizer with default parameters.
+
+Next, fit a fit a multinomial Naive Bayes classifier model with smoothing `alpha=0.1`. Find the area under the curve (AUC) score using the transformed test data.
+
+*This function should return the AUC score as a float.*
+
+### Question 4
+
+Fit and transform the training data `X_train` using a Tfidf Vectorizer with default parameters.
+
+What 20 features have the smallest tf-idf and what 20 have the largest tf-idf?
+
+Put these features in a two series where each series is sorted by tf-idf value and then alphabetically by feature name. The index of the series should be the feature name, and the data should be the tf-idf.
+
+The series of 20 features with smallest tf-idfs should be sorted smallest tfidf first, the list of 20 features with largest tf-idfs should be sorted largest first. 
+
+*This function should return a tuple of two series
+`(smallest tf-idfs series, largest tf-idfs series)`.*
