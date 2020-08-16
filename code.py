@@ -37,14 +37,17 @@ def answer_two():
 
 def answer_three():
 
+    # Fit and transform the training data `X_train` using a Count Vectorizer with default parameters.
     count_vect = CountVectorizer().fit(X_train)
     count_vect_transformed = count_vect.transform(X_train)
-    model = MultinomialNB(alpha=0.1).fit(count_vect_transformed, y_train)
-    # Predict the transformed test documents
-    predictions = model.predict(count_vect.transform(X_test))
 
+    # fit a multinomial Naive Bayes classifier model with smoothing `alpha=0.1`
+    model = MultinomialNB(alpha=0.1).fit(count_vect_transformed, y_train)
+
+    # Find the area under the curve (AUC) score
+    predictions = model.predict(count_vect.transform(X_test))
     auc = roc_auc_score(y_test, predictions)
     return auc
 
 
-print(answer_three())
+# print(answer_three())
