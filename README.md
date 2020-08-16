@@ -42,3 +42,9 @@ Fit and transform the training data `X_train` using a Tfidf Vectorizer ignoring 
 Then fit a multinomial Naive Bayes classifier model with smoothing `alpha=0.1` and compute the area under the curve (AUC) score using the transformed test data.
 
 *This function should return the AUC score as a float.*
+
+### Question 6
+
+What is the average length of documents (number of characters) for not spam and spam documents?
+
+*This function should return a tuple (average length not spam, average length spam).*
