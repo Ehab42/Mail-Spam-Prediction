@@ -90,6 +90,8 @@ def answer_seven():
     tfidf_vectorized = tfidf.transform(X_train)
 
     # Fit a Support Vector Classification model with regularization `C=10000`.
+    X_train['Doument Length'] = X_train.str.len()
+    X_test['Doument Length'] = X_test.str.len()
     model = SVC(C=10000).fit(tfidf_vectorized, y_train)
 
     # Find the area under the curve (AUC) score
