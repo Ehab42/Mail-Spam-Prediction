@@ -34,3 +34,11 @@ The series of 20 features with smallest tf-idfs should be sorted smallest tfidf 
 
 *This function should return a tuple of two series
 `(smallest tf-idfs series, largest tf-idfs series)`.*
+
+### Question 5
+
+Fit and transform the training data `X_train` using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than **3**.
+
+Then fit a multinomial Naive Bayes classifier model with smoothing `alpha=0.1` and compute the area under the curve (AUC) score using the transformed test data.
+
+*This function should return the AUC score as a float.*
