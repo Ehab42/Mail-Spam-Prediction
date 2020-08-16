@@ -68,4 +68,15 @@ def answer_five():
     return auc
 
 
-print(answer_five())
+# print(answer_five())
+
+def answer_six():
+
+    avg_len_nospam = (spam_data[spam_data['target']
+                                == 0]['text'].str.len()).mean()
+    avg_len_spam = (spam_data[spam_data['target'] == 1]
+                    ['text'].str.len()).mean()
+    return avg_len_nospam, avg_len_spam
+
+
+# print(answer_six())
