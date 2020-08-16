@@ -79,4 +79,4 @@ def answer_six():
     return avg_len_nospam, avg_len_spam
 
 
-print(answer_six())
+# print(answer_six())
