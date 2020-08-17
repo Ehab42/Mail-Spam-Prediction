@@ -48,3 +48,37 @@ Then fit a multinomial Naive Bayes classifier model with smoothing `alpha=0.1` a
 What is the average length of documents (number of characters) for not spam and spam documents?
 
 *This function should return a tuple (average length not spam, average length spam).*
+
+### Question 7
+
+Fit and transform the training data X_train using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than **5**.
+
+Using this document-term matrix and an additional feature, **the length of document (number of characters)**, fit a Support Vector Classification model with regularization `C=10000`. Then compute the area under the curve (AUC) score using the transformed test data.
+
+*This function should return the AUC score as a float.*
+
+### Question 8
+
+What is the average number of digits per document for not spam and spam documents?
+
+*This function should return a tuple (average # digits not spam, average # digits spam).*
+
+### Question 9
+
+Fit and transform the training data `X_train` using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than **5** and using **word n-grams from n=1 to n=3** (unigrams, bigrams, and trigrams).
+
+Using this document-term matrix and the following additional features:
+* the length of document (number of characters)
+* **number of digits per document**
+
+fit a Logistic Regression model with regularization `C=100`. Then compute the area under the curve (AUC) score using the transformed test data.
+
+*This function should return the AUC score as a float.*
+
+### Question 10
+
+What is the average number of non-word characters (anything other than a letter, digit or underscore) per document for not spam and spam documents?
+
+*Hint: Use `\w` and `\W` character classes*
+
+*This function should return a tuple (average # non-word characters not spam, average # non-word characters spam).*
