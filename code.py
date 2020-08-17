@@ -89,17 +89,17 @@ def answer_eight():
 
 # print(answer_eight())
 
-def answer_ten():
-
-    return spam_data[spam_data['target'] == 0]['text'].str.count(r'\W').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\W').mean()
-
-
-# print(answer_ten())
-
-
 def answer_nine():
 
     return  # Your answer here
 
 
 print(answer_nine())
+
+
+def answer_ten():
+
+    return spam_data[spam_data['target'] == 0]['text'].str.count(r'\W').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\W').mean()
+
+
+# print(answer_ten())
