@@ -104,13 +104,22 @@ def answer_seven():
     model = SVC(C=10000).fit(X_train_tf, y_train)
 
     # Compute the area under the curve (AUC) score using the transformed test data
+    predictions = model.predict(X_test_tf)
+    auc = roc_auc_score(y_test, predictions)
+
+    return auc
+
+
+answer_seven()
+
 
 def answer_eight():
 
     return spam_data[spam_data['target'] == 0]['text'].str.count(r'\d').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\d').mean()
 
 
-# print(answer_eight())
+answer_eight()
+
 
 def answer_nine():
 
@@ -134,6 +143,18 @@ def answer_nine():
     model = LogisticRegression(C=100).fit(X_train_tf, y_train)
 
     # Find the area under the curve (AUC) score    predictions = model.predict(X_test_tf)
+    predictions = model.predict(X_test_tf)
     auc = roc_auc_score(y_test, predictions)
 
     return auc
+
+
+answer_nine()
+
+
+def answer_ten():
+
+    return return spam_data[spam_data['target'] == 0]['text'].str.count(r'\W').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\W').mean()
+
+
+answer_ten()
