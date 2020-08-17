@@ -1,3 +1,4 @@
+from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.naive_bayes import MultinomialNB
@@ -88,6 +89,22 @@ def answer_six():
 
 # print(answer_six())
 
+def answer_seven():
+
+    # Fit and transform the training data `X_train` using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than **3**.
+    tfidf = TfidfVectorizer(min_df=5).fit(X_train)
+    X_train_tf = tfidf.transform(X_train)
+    X_test_tf = tfidf.transform(X_test)
+
+    # Add Document length as a feature
+    X_train_tf = add_feature(X_train.str.len().values[:, None], X_train_tf)
+    X_test_tf = add_feature(X_test.str.len().values[:, None], X_test_tf)
+
+    # Fit a Support Vector Classification model with regularization C=10000
+    model = SVC(C=10000).fit(X_train_tf, y_train)
+
+    # Compute the area under the curve (AUC) score using the transformed test data
+
 def answer_eight():
 
     return spam_data[spam_data['target'] == 0]['text'].str.count(r'\d').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\d').mean()
@@ -116,19 +133,7 @@ def answer_nine():
     # Fit a Logistic Regression model with regularization C=100
     model = LogisticRegression(C=100).fit(X_train_tf, y_train)
 
-    # Find the area under the curve (AUC) score
-    predictions = model.predict(X_test_tf)
+    # Find the area under the curve (AUC) score    predictions = model.predict(X_test_tf)
     auc = roc_auc_score(y_test, predictions)
 
     return auc
-
-
-print(answer_nine())
-
-
-def answer_ten():
-
-    return spam_data[spam_data['target'] == 0]['text'].str.count(r'\W').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\W').mean()
-
-
-# print(answer_ten())
