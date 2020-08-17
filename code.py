@@ -154,7 +154,7 @@ answer_nine()
 
 def answer_ten():
 
-    return return spam_data[spam_data['target'] == 0]['text'].str.count(r'\W').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\W').mean()
+    return spam_data[spam_data['target'] == 0]['text'].str.count(r'\W').mean(), spam_data[spam_data['target'] == 1]['text'].str.count(r'\W').mean()
 
 
 answer_ten()
