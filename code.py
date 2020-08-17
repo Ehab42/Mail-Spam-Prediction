@@ -99,13 +99,13 @@ def answer_nine():
 
     # Fit and transform the training data X_train using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than 5
     #  and using word n-grams from n=1 to n=3
-    tfidf = TfidfVectorizer(min_df=5).fit(X_train)
+    tfidf = TfidfVectorizer(min_df=5, ngram_range=(1, 3)).fit(X_train)
     X_train_tf = tfidf.transform(X_train)
     X_test_tf = tfidf.transform(X_test)
 
-    # Add Document length as a feature
-    X_train_tf = add_feature(X_train.str.len().values[:, None], X_train_tf)
-    X_test_tf = add_feature(X_test.str.len().values[:, None], X_test_tf)
+    # # # Add Document length as a feature
+    # X_train_tf = add_feature(X_train.str.len().values[:, None], X_train_tf)
+    # X_test_tf = add_feature(X_test.str.len().values[:, None], X_test_tf)
 
     # Add Number of digits per document as a feature
     X_train_tf = add_feature(X_train.str.count(
