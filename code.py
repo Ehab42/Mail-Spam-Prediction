@@ -4,6 +4,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
+from scipy.sparse import hstack
 import pandas as pd
 import numpy as np
 
@@ -15,6 +16,11 @@ spam_data['target'] = np.where(spam_data['target'] == 'spam', 1, 0)
 X_train, X_test, y_train, y_test = train_test_split(spam_data['text'],
                                                     spam_data['target'],
                                                     random_state=0)
+
+
+def add_feature(feature, train):
+    X_train_dtm = hstack((train, feature))
+    return X_train_dtm
 
 
 def answer_one():
@@ -87,18 +93,21 @@ def answer_seven():
 
     # Fit and transform the training data `X_train` using a Tfidf Vectorizer ignoring terms that have a document frequency strictly lower than **3**.
     tfidf = TfidfVectorizer(min_df=5).fit(X_train)
-    tfidf_vectorized = tfidf.transform(X_train)
+    X_train_tf = tfidf.transform(X_train)
+    X_test_tf = tfidf.transform(X_test)
 
-    # Fit a Support Vector Classification model with regularization `C=10000`.
-    X_train['Doument Length'] = X_train.str.len()
-    X_test['Doument Length'] = X_test.str.len()
-    model = SVC(C=10000).fit(tfidf_vectorized, y_train)
+    # Add Document length as a feature
+    X_train_tf = add_feature(X_train.str.len().values[:, None], X_train_tf)
+    X_test_tf = add_feature(X_test.str.len().values[:, None], X_test_tf)
 
-    # Find the area under the curve (AUC) score
-    predictions = model.predict(tfidf.transform(X_test))
+    # Fit a Support Vector Classification model with regularization C=10000
+    model = SVC(C=10000).fit(X_train_tf, y_train)
+
+    # Compute the area under the curve (AUC) score using the transformed test data
+    predictions = model.predict(X_test_tf)
     auc = roc_auc_score(y_test, predictions)
 
     return auc
 
 
-print(answer_seven())
+# print(answer_seven())
